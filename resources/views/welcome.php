@@ -7,33 +7,37 @@
 <body>
     <h1>Users</h1>
 
-    <ul id="app">
-        <li v-for="user in users">{{ user }}</li>
-    </ul>
+    <div id="app">
+        <!-- <li v-for="user in users">{{ user }}</li> -->
+        <p>{{ cont }}</p>
+        <button v-on:click="counter">Iniciar</button>
+    </div>
 
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js"></script>
 
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
+    <!-- </script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.js"></script>
 
-    </script>
+    </script> -->
     <script>
 
-    var socket = io('http://127.0.0.1:3000');
+    // var socket = io('http://127.0.0.1:3000');
 
-    new Vue({
+    var app = new Vue({
         el: '#app',
         data: {
-            users: []
+            cont : 1000,
         },
-        mounted: function(){
-            socket.on('test-channel:EventoTeste', function(data){
-                this.users.push(data.username);
-            }.bind(this));
+        methods: {
+            counter: function(){
+                self  = this; //instancia vue
+                setInterval(function(){
+                    self.$data.cont--; //como acessar a instancia
+                }, 1000);
+            }
         }
     })
-
 
     </script>
 </body>

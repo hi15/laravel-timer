@@ -10,19 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-
 Route::get('/', function () {
 
     // 1. Publish event with Redis
-    $data = [
-        'event' => 'EventoTeste',
-        'data' => [
-            'username' => 'Fulano'
-        ]
-    ];
+// $data = [
+//     'event' => 'EventoTeste',
+//     'data' => [
+//         'username' => 'Fulano'
+//     ]
+// ];
 
-    Redis::publish('test-channel', json_encode($data));
+    // event(new NovoLance('Fulano'));
+    // Redis::publish('test-channel', json_encode($data));
+
     // 2. Node + Redis subscribes to the event
     // 3. Use socket.io to emit to all clients
     return view('welcome');
